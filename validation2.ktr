@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>validation</name>
+    <name>validation2</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,118 +428,33 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2014/03/07 21:42:59.144</created_date>
+    <created_date>2020/10/14 17:24:41.215</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2014/03/07 22:49:11.834</modified_date>
+    <modified_date>2020/10/14 17:24:41.215</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
-    <notepad>
-      <note>Data validation rules:
-- salesman cannot be NULL
-- date format dd-MM-yyyy
-- only dates after 01-01-2013
-- max count of airbags is 12
-- only names from car list are allowed
-- price have to be between 1000 - 100000
-</note>
-      <xloc>16</xloc>
-      <yloc>48</yloc>
-      <width>315</width>
-      <heigth>162</heigth>
-      <fontname>Arial</fontname>
-      <fontsize>10</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>205</backgroundcolorgreen>
-      <backgroundcolorblue>112</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
   <order>
     <hop>
       <from>Sells</from>
-      <to>Data Validator</to>
+      <to>Data validator</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Car List</from>
-      <to>Data Validator</to>
+      <from>Data validator</from>
+      <to>Dummy (do nothing) 2 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Data Validator</from>
-      <to>valid rows</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Data Validator</from>
-      <to>invalid rows</to>
+      <from>Data validator</from>
+      <to>Dummy (do nothing) 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Car List</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>car</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>Opel</item>
-      </line>
-      <line>
-        <item>Porsche</item>
-      </line>
-      <line>
-        <item>Volvo</item>
-      </line>
-      <line>
-        <item>Škoda</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>120</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Data Validator</name>
+    <name>Data validator</name>
     <type>Validator</type>
     <description/>
     <distribute>N</distribute>
@@ -553,168 +468,28 @@
     <concat_errors>N</concat_errors>
     <concat_separator>|</concat_separator>
     <validator_field>
-      <name>salesman</name>
-      <validation_name>salesman_null</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value/>
-      <min_value/>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>SM_NULL</error_code>
-      <error_description>Field salesman is null</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
-      <name>saledate</name>
-      <validation_name>date_format</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>Y</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>Date</data_type>
-      <data_type_verified>Y</data_type_verified>
-      <conversion_mask>dd-MM-yyyy</conversion_mask>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value/>
-      <min_value>01-01-2013</min_value>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>DT_ERROR</error_code>
-      <error_description>Date format is not valid or date is less than 01-01-2013</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
-      <name>airbags_count</name>
-      <validation_name>count_airbags</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>Y</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>Integer</data_type>
-      <data_type_verified>Y</data_type_verified>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value>12</max_value>
-      <min_value/>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>AB_COUNT</error_code>
-      <error_description>Count of airbags is greater then 12</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
-      <name>car_type</name>
-      <validation_name>car_names</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>String</data_type>
-      <data_type_verified>Y</data_type_verified>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value/>
-      <min_value/>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>CN_ERROR</error_code>
-      <error_description>Type of car is not valid</error_description>
-      <is_sourcing_values>Y</is_sourcing_values>
-      <sourcing_step>Car List</sourcing_step>
-      <sourcing_field>car</sourcing_field>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
       <name>price</name>
       <validation_name>price</validation_name>
       <max_length/>
       <min_length/>
-      <null_allowed>N</null_allowed>
+      <null_allowed>Y</null_allowed>
       <only_null_allowed>N</only_null_allowed>
       <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>Integer</data_type>
+      <data_type>Number</data_type>
       <data_type_verified>N</data_type_verified>
       <conversion_mask/>
       <decimal_symbol/>
       <grouping_symbol/>
-      <max_value>10000</max_value>
-      <min_value>1000</min_value>
+      <max_value>200000</max_value>
+      <min_value>3000</min_value>
       <start_string/>
       <end_string/>
       <start_string_not_allowed/>
       <end_string_not_allowed/>
       <regular_expression/>
       <regular_expression_not_allowed/>
-      <error_code>P_ERROR</error_code>
-      <error_description>Price is less than 1000 or greater than 100000</error_description>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <validator_field>
-      <name>price</name>
-      <validation_name>kkk</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>N</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>None</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value>10000</max_value>
-      <min_value>400</min_value>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code>errrr</error_code>
-      <error_description>errrrrrrr</error_description>
+      <error_code/>
+      <error_description/>
       <is_sourcing_values>N</is_sourcing_values>
       <sourcing_step/>
       <sourcing_field/>
@@ -729,8 +504,58 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>624</xloc>
-      <yloc>288</yloc>
+      <xloc>464</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>636</xloc>
+      <yloc>300</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Dummy (do nothing) 2 2</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>636</xloc>
+      <yloc>72</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -756,6 +581,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>saledate</name>
@@ -767,10 +593,11 @@
         <length>0</length>
         <precision>0</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>price</name>
-        <type>Integer</type>
+        <type>Number</type>
         <format/>
         <currency/>
         <decimal/>
@@ -778,6 +605,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>airbags_count</name>
@@ -789,6 +617,7 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
       <field>
         <name>car_type</name>
@@ -800,6 +629,19 @@
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
+        <field_null_if/>
+      </field>
+      <field>
+        <name>status</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+        <field_null_if/>
       </field>
     </fields>
     <data>
@@ -809,6 +651,7 @@
         <item>150000000</item>
         <item>4</item>
         <item>Opel</item>
+        <item>New</item>
       </line>
       <line>
         <item>Bob</item>
@@ -816,6 +659,7 @@
         <item>2150</item>
         <item>3</item>
         <item>Skoda</item>
+        <item>New</item>
       </line>
       <line>
         <item>Frank</item>
@@ -823,6 +667,7 @@
         <item>4500,15</item>
         <item>8</item>
         <item>Volvo</item>
+        <item>Repair</item>
       </line>
       <line>
         <item>Dylan</item>
@@ -830,6 +675,7 @@
         <item>80000</item>
         <item>28</item>
         <item>Porsche</item>
+        <item>New</item>
       </line>
       <line>
         <item>Josh</item>
@@ -837,6 +683,7 @@
         <item>15467</item>
         <item>6</item>
         <item>Volvo</item>
+        <item>Repair</item>
       </line>
       <line>
         <item/>
@@ -844,6 +691,7 @@
         <item>45872</item>
         <item>12</item>
         <item>Opel</item>
+        <item>Repair</item>
       </line>
     </data>
     <attributes/>
@@ -855,65 +703,15 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>384</xloc>
-      <yloc>288</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>invalid rows</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>456</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>valid rows</name>
-    <type>Dummy</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>816</xloc>
-      <yloc>288</yloc>
+      <xloc>272</xloc>
+      <yloc>208</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
     <error>
-      <source_step>Data Validator</source_step>
-      <target_step>invalid rows</target_step>
+      <source_step>Data validator</source_step>
+      <target_step>Dummy (do nothing) 2</target_step>
       <is_enabled>Y</is_enabled>
       <nr_valuename/>
       <descriptions_valuename/>
