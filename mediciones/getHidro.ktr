@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>validation2</name>
+    <name>getHidro</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,9 +428,9 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2020/10/14 17:24:41.215</created_date>
+    <created_date>2020/10/19 13:55:21.506</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/10/14 17:24:41.215</modified_date>
+    <modified_date>2020/10/19 13:55:21.506</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -438,80 +438,14 @@
   </notepads>
   <order>
     <hop>
-      <from>Sells</from>
-      <to>Data validator</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Data validator</from>
-      <to>Dummy (do nothing) 2 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Data validator</from>
-      <to>Dummy (do nothing) 2</to>
+      <from>Get file names</from>
+      <to>Copy rows to result</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Data validator</name>
-    <type>Validator</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <validate_all>N</validate_all>
-    <concat_errors>N</concat_errors>
-    <concat_separator>|</concat_separator>
-    <validator_field>
-      <name>price</name>
-      <validation_name>price</validation_name>
-      <max_length/>
-      <min_length/>
-      <null_allowed>Y</null_allowed>
-      <only_null_allowed>N</only_null_allowed>
-      <only_numeric_allowed>N</only_numeric_allowed>
-      <data_type>Number</data_type>
-      <data_type_verified>N</data_type_verified>
-      <conversion_mask/>
-      <decimal_symbol/>
-      <grouping_symbol/>
-      <max_value>200000</max_value>
-      <min_value>3000</min_value>
-      <start_string/>
-      <end_string/>
-      <start_string_not_allowed/>
-      <end_string_not_allowed/>
-      <regular_expression/>
-      <regular_expression_not_allowed/>
-      <error_code/>
-      <error_description/>
-      <is_sourcing_values>N</is_sourcing_values>
-      <sourcing_step/>
-      <sourcing_field/>
-      <allowed_value/>
-    </validator_field>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>464</xloc>
-      <yloc>208</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Dummy (do nothing) 2</name>
-    <type>Dummy</type>
+    <name>Copy rows to result</name>
+    <type>RowsToResult</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -529,14 +463,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>636</xloc>
-      <yloc>300</yloc>
+      <xloc>480</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Dummy (do nothing) 2 2</name>
-    <type>Dummy</type>
+    <name>Get file names</name>
+    <type>GetFileNames</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -545,6 +479,26 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <filter>
+      <filterfiletype>all_files</filterfiletype>
+    </filter>
+    <doNotFailIfNoFile>N</doNotFailIfNoFile>
+    <rownum>N</rownum>
+    <isaddresult>Y</isaddresult>
+    <filefield>N</filefield>
+    <rownum_field/>
+    <filename_Field/>
+    <wildcard_Field/>
+    <exclude_wildcard_Field/>
+    <dynamic_include_subfolders>N</dynamic_include_subfolders>
+    <limit>0</limit>
+    <file>
+      <name>C:\Pentaho\scripts\curso\mediciones\data</name>
+      <filemask>hid.*\..*</filemask>
+      <exclude_filemask/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
+    </file>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -554,173 +508,12 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>636</xloc>
-      <yloc>72</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Sells</name>
-    <type>DataGrid</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
-      <field>
-        <name>salesman</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>saledate</name>
-        <type>Date</type>
-        <format>dd-MM-yyyy</format>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>0</length>
-        <precision>0</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>price</name>
-        <type>Number</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>airbags_count</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>car_type</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-      <field>
-        <name>status</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-        <field_null_if/>
-      </field>
-    </fields>
-    <data>
-      <line>
-        <item>Bob</item>
-        <item>3-3-2013</item>
-        <item>150000000</item>
-        <item>4</item>
-        <item>Opel</item>
-        <item>New</item>
-      </line>
-      <line>
-        <item>Bob</item>
-        <item>08-08-2013</item>
-        <item>2150</item>
-        <item>3</item>
-        <item>Skoda</item>
-        <item>New</item>
-      </line>
-      <line>
-        <item>Frank</item>
-        <item>03-02-2013</item>
-        <item>4500,15</item>
-        <item>8</item>
-        <item>Volvo</item>
-        <item>Repair</item>
-      </line>
-      <line>
-        <item>Dylan</item>
-        <item>3-11-2013</item>
-        <item>80000</item>
-        <item>28</item>
-        <item>Porsche</item>
-        <item>New</item>
-      </line>
-      <line>
-        <item>Josh</item>
-        <item>01-02-2012</item>
-        <item>15467</item>
-        <item>6</item>
-        <item>Volvo</item>
-        <item>Repair</item>
-      </line>
-      <line>
-        <item/>
-        <item>08-09-2013</item>
-        <item>45872</item>
-        <item>12</item>
-        <item>Opel</item>
-        <item>Repair</item>
-      </line>
-    </data>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>272</xloc>
-      <yloc>208</yloc>
+      <xloc>256</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step_error_handling>
-    <error>
-      <source_step>Data validator</source_step>
-      <target_step>Dummy (do nothing) 2</target_step>
-      <is_enabled>Y</is_enabled>
-      <nr_valuename/>
-      <descriptions_valuename/>
-      <fields_valuename/>
-      <codes_valuename/>
-      <max_errors/>
-      <max_pct_errors/>
-      <min_pct_rows/>
-    </error>
   </step_error_handling>
   <slave-step-copy-partition-distribution>
   </slave-step-copy-partition-distribution>
