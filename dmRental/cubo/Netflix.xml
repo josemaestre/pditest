@@ -1,0 +1,50 @@
+<Schema name="NetFlix">
+  <Dimension type="TimeDimension" visible="true" name="Tiempo">
+    <Hierarchy name="Tiempo" visible="true" hasAll="true" allMemberName="All Times" primaryKey="sk">
+      <Table name="dim_tiempo" alias="">
+      </Table>
+      <Level name="A&#241;o" visible="true" table="dim_tiempo" column="Anio" type="Integer" internalType="int" uniqueMembers="true" levelType="TimeYears" hideMemberIf="Never" caption="A&#209;O">
+      </Level>
+      <Level name="Mes" visible="true" table="dim_tiempo" column="NMes3L" nameColumn="NMes3L" type="String" uniqueMembers="true" levelType="TimeMonths" hideMemberIf="Never" caption="Mes">
+      </Level>
+      <Level name="Dia" visible="true" column="Dia" nameColumn="Dia" type="Integer" uniqueMembers="true" levelType="TimeDays" hideMemberIf="Never" caption="Dia">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="Film">
+    <Hierarchy name="Film" visible="true" hasAll="true" allMemberName="All Films" primaryKey="sk">
+      <Table name="dim_film" alias="">
+      </Table>
+      <Level name="Film" visible="true" table="dim_film" column="title" nameColumn="title" type="String" uniqueMembers="false" levelType="Regular" hideMemberIf="Never" caption="Film">
+      </Level>
+      <Level name="Categoria" visible="true" table="dim_film" column="category" nameColumn="category" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" caption="Categoria">
+      </Level>
+      <Level name="Rate" visible="true" table="dim_film" column="rate" nameColumn="rate" type="String" uniqueMembers="true" levelType="Regular" caption="Rate">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Dimension type="StandardDimension" visible="true" name="Geografica">
+    <Hierarchy name="Geografica" visible="true" hasAll="true" allMemberName="All Geografic" primaryKey="sk">
+      <Table name="dim_geografica" alias="">
+      </Table>
+      <Level name="Pais" visible="true" table="dim_geografica" column="country_name" nameColumn="country_name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" caption="Pais">
+      </Level>
+      <Level name="Ciudad" visible="true" table="dim_geografica" column="city_name" nameColumn="city_name" type="String" uniqueMembers="true" levelType="Regular" hideMemberIf="Never" caption="Ciudad">
+      </Level>
+    </Hierarchy>
+  </Dimension>
+  <Cube name="Peliculas" visible="true" cache="true" enabled="true">
+    <Table name="fact_rental" alias="">
+    </Table>
+    <DimensionUsage source="Tiempo" name="Tiempo" visible="true" foreignKey="dim_tiempo_sk">
+    </DimensionUsage>
+    <DimensionUsage source="Film" name="Film" visible="true" foreignKey="dim_film_sk">
+    </DimensionUsage>
+    <DimensionUsage source="Geografica" name="Goegrafica" visible="true" foreignKey="dim_geografica_sk">
+    </DimensionUsage>
+    <Measure name="monto" column="pay_amount" aggregator="sum" visible="true">
+    </Measure>
+    <Measure name="Peliculas" column="instance" aggregator="sum" visible="true">
+    </Measure>
+  </Cube>
+</Schema>
